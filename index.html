@@ -4,48 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        @font-face {
-            font-family: 'Kanit';
-            src: url('./Kanit/Kanit-Regular.ttf');
-        }
-        body{
-            font-family: 'Kanit';
-        }
-        .container{
-            width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: azure;
-            padding: 20px;
-        }
-        .header{
-            font-size: 30px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header-form{
-            width: 140px;
-        }
-        .flex{
-            display: flex;
-        }
-        .form-input{
-            margin-bottom: 10px;
-        }
-        .input.form,textarea{
-            border: 1px solid black;
-            width: 100%;
-        }
-        .center{
-            text-align: center;
-        }
-        .button{
-            border: 0;
-            width: 100%;
-            height: 40px;
-        }
-    </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -67,15 +26,21 @@
 
         <div class="flex gender form-input">
             <div class="header-form">เพศ</div>
-            <div>
-                <input name="gender" type="radio">ชาย
-                <input name="gender" type="radio">หญิง
-                <input name="gender" type="radio">อื่นๆ
+            <div class="flex">
+                <div>
+                    <input name="gender" type="radio">ชาย
+                </div>
+                <div>
+                    <input name="gender" type="radio">หญิง
+                </div>
+                <div>
+                    <input name="gender" type="radio">อื่นๆ
+                </div>
             </div>
         </div>
 
         <div class="form-input">
-        สิ่งที่สนใจ
+            สิ่งที่สนใจ
             <div>
                 <input name="interest" type="checkbox">เรียน
             </div>
@@ -88,15 +53,14 @@
         </div>
 
         <div class="form-input">
-        คำอธิบายตัวเอง
+            คำอธิบายเพิ่มเติม
             <div>
                 <textarea></textarea>
             </div>
         </div>
-        <div class="form-input">
-            <button>ส่งข้อมูล</button> 
+        <div class="button">
+            <button class="button">ส่งข้อมูล</button> 
         </div>
-
     </div>
 </body>
 </html>
