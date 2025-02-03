@@ -1,0 +1,18 @@
+docker - v // Docker version 19.03.5, build 633a0ea
+docker ps // List all running containres
+docker ps --all or docker ps -a // List all containres
+docker run hello-world // Run a containres
+docker rm containres_id // Run a containres
+docker run -p 80:80 nginx // Run a containres with post mapping
+docker run -p 80:80 nginx
+docker stop containres_id // Stop a containres
+docker rm containres_id // Remove a containres
+docker exec -it d4b25c027cd0  bash
+
+linux command
+ls // List all files
+pwd // Present working directory
+cd // Change directory
+cd..// Go back to hte previous directory
+cd//etc/nginx // GO to the nginx directory
+cat flie_name // Display the content of a flie
