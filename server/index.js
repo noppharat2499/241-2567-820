@@ -12,4 +12,4 @@ const requestListener = function (req, res) {
 const server = http.createServer(requestListener); // สร้าง server ด้วย http.createServer โดยส่ง requestListener เข้าไป
     server.listen(port, host, () => { // กำหนดให้ server รอรับ request ที่ port 8000 และ host ที่เรากำหนดไว้
         console.log(`Server is running on http://${host}:${port}`); //แสดงข้อความว่า server กำลังทำงานอยู่ที่ http://localhost:8000
-    });
+});
