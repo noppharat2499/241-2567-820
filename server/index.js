@@ -1,15 +1,70 @@
-// import http module เพื่อสร้าง server
-const http = require('http');
+const bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
 
-const host = 'localhost' // กำหนด host ที่ server จะรอรับ request
-const port = 8000 // กำหนด port ที่ server จะรอรับ request
+app.use(bodyParser.json())
+const port = 8000;
 
-const requestListener = function (req, res) {
-  res.writeHead(200) // ส่ง status code 200 กลับไปให้ client
-  res.end('My first server!'); //ส่ง response กลับไปให้ client
-}
+// เก็บ user
+let users = []
+let counter = 1 
 
-const server = http.createServer(requestListener); // สร้าง server ด้วย http.createServer โดยส่ง requestListener เข้าไป
-    server.listen(port, host, () => { // กำหนดให้ server รอรับ request ที่ port 8000 และ host ที่เรากำหนดไว้
-        console.log(`Server is running on http://${host}:${port}`); //แสดงข้อความว่า server กำลังทำงานอยู่ที่ http://localhost:8000
+/*
+GET /user สำหรับ get users ทั้งหมด
+POST /users สำหรับเพิ่ม user ใหม่เข้าไป
+DELETE /users/:id สำหรับลบ user ที่มี id ตามที่ระบุ
+GET /users/:id สำหรับ get user ที่มี id ตามที่ระบุ
+PUT /users/:id สำหรับ update user ที่มี id ตามที่ระบุ
+*/
+
+// path = GET /users
+app.get('/users', (req, res) => {
+  res.json(users);
+});
+
+// path = POST /user
+app.post('/user', (req, res) => {
+  let user = req.body;
+  user.id = counter
+  counter += 1
+  users.push(user);
+  res.json({message: "User created",user: user});
+}); 
+
+// path = PUT /user/:id
+app.put('/user/:id', (req, res) => {
+  let id = req.params.id;
+  let updateUser  = req.body;
+  //หา user จาก id ที่ส่งมา
+  let selectedIndex = users.findIndex(user => user.id == id) 
+  //update user นั้น
+  if (updateUser.firstname) {
+    users[selectedIndex].firstname = updateUser.firstname
+  }
+  if (updateUser.lastnamename) {
+    users[selectedIndex].lastname = updateUser.lastname || users[selectedIndex].lastname
+  }
+
+  res.json({
+    message: "User updated",
+    date: {
+      user: updateUser,
+      indexUpdared: selectedIndex
+    }
+  });
+  //ส่งข้อมูล user ที่ update กลับที่เดิม
+  res.send(id)
+});
+
+//path = DELETE /user/:id
+app.delete('/user/:id', (req, res) => {
+  let id = req.params.id;
+
+  let selectedIndex = users.findIndex(user => user.id == id) 
+
+  users.splice(selectedIndex, 1)
+  res.json({message: "Delete Completer",indexDeleted: selectedIndex})
+});
+app.listen(port, (req, res) => {
+  console.log('Server is running on port' + port);
 });
