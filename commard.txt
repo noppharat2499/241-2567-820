@@ -8,6 +8,7 @@ docker run -p 80:80 nginx
 docker stop containres_id // Stop a containres
 docker rm containres_id // Remove a containres
 docker exec -it d4b25c027cd0  bash
+docker-conpose up -d // run docker
 
 linux command
 ls // List all files
