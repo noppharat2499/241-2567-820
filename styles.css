@@ -53,7 +53,7 @@
           display: block;
       }
 
-      .message danger{
+      .message.danger{
           background-color: lightcoral;
           display: block;
       }
